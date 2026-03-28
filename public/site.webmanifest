@@ -1,0 +1,22 @@
+{
+  "name": "Tân Nguyên Jewelry",
+  "short_name": "Tân Nguyên",
+  "description": "Tinh Hoa Trang Sức — Tôn Vinh Giá Trị",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D1B2A",
+  "theme_color": "#D4AF37",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ]
+}

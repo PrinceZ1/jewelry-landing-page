@@ -2,6 +2,16 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Favicon (`.ico` for legacy browsers)
+
+The project ships **SVG** favicons (`public/favicon.svg`, `public/apple-touch-icon.svg`). The HTML does not reference `favicon.ico`.
+
+To add a classic **`.ico`** for older clients:
+
+1. Open [RealFaviconGenerator](https://realfavicongenerator.net).
+2. Upload `public/favicon.svg`.
+3. Download the generated pack and add `public/favicon.ico` if you need it, then add a `<link rel="icon" href="/favicon.ico" />` in `index.html` if desired.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)

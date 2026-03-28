@@ -1,0 +1,103 @@
+.testimonials {
+  padding: var(--section-padding);
+  background: #fff;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--section-inner-x);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.left {
+  position: relative;
+  padding-top: 8px;
+}
+
+.titleLine {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.titleAccent {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 500;
+  margin: 4px 0 0;
+  line-height: 1.2;
+}
+
+.titleAccent em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.quoteMark {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 100px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.25;
+  margin-top: 8px;
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 280px;
+  margin: 0;
+  background: var(--bg-card);
+  padding: 36px;
+  border-radius: 2px;
+  border: none;
+}
+
+.quote {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--text-dark);
+  line-height: 1.75;
+  margin: 0 0 24px;
+}
+
+.name {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--text-dark);
+  display: block;
+}
+
+.tag {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--gold-muted);
+  margin: 4px 0 0;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    flex-direction: column;
+  }
+}
