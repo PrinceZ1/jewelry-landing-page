@@ -1,83 +1,78 @@
-# React + TypeScript + Vite
+# Tân Nguyên Jewelry — Landing page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website một trang (single-page) giới thiệu thương hiệu trang sức cao cấp **Tân Nguyên**, tối ưu trải nghiệm đọc, điều hướng mượt và hiển thị tốt trên desktop cùng thiết bị di động.
 
-## Favicon (`.ico` for legacy browsers)
+## Công nghệ
 
-The project ships **SVG** favicons (`public/favicon.svg`, `public/apple-touch-icon.svg`). The HTML does not reference `favicon.ico`.
+| Thành phần | Lựa chọn |
+|------------|----------|
+| UI | React 19, TypeScript (strict) |
+| Build & dev server | Vite 8 |
+| Styling | CSS Modules (mỗi component một file `.module.css`) |
+| Font | Google Fonts: Playfair Display, Montserrat, Cormorant Garamond |
+| Icon | SVG nội tuyến, không dùng thư viện icon |
 
-To add a classic **`.ico`** for older clients:
+Không sử dụng Tailwind, Bootstrap hay bộ UI component bên ngoài (MUI, Chakra, shadcn, …).
 
-1. Open [RealFaviconGenerator](https://realfavicongenerator.net).
-2. Upload `public/favicon.svg`.
-3. Download the generated pack and add `public/favicon.ico` if you need it, then add a `<link rel="icon" href="/favicon.ico" />` in `index.html` if desired.
+## Cấu trúc mã nguồn (tóm tắt)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx                 # Ghép các section theo thứ tự
+├── main.tsx
+├── index.css               # Biến thiết kế toàn cục, reset
+├── hooks/
+│   └── useScrollReveal.ts  # IntersectionObserver (nếu dùng cho hiệu ứng reveal)
+└── components/
+    ├── Navbar/, Hero/, About/, Services/, Products/
+    ├── Testimonials/, Contact/, Footer/
+    └── … mỗi thư mục: Component.tsx + Component.module.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Tài nguyên tĩnh: `public/` (favicon SVG, `apple-touch-icon.svg`, `site.webmanifest`, …).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Yêu cầu môi trường
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Node.js** 20+ (khuyến nghị LTS)
+- **npm** hoặc **pnpm** / **yarn**
+
+## Cài đặt và chạy
+
+```bash
+npm install
 ```
+
+| Lệnh | Mô tả |
+|------|--------|
+| `npm run dev` | Chạy máy chủ phát triển (HMR), mặc định `http://localhost:5173` |
+| `npm run build` | Kiểm tra TypeScript (`tsc -b`) và build production vào `dist/` |
+| `npm run preview` | Xem bản build production cục bộ |
+| `npm run lint` | Chạy ESLint trên toàn project |
+
+## Triển khai
+
+Sau `npm run build`, thư mục `dist/` chứa file tĩnh có thể đưa lên bất kỳ host tĩnh nào (Vercel, Netlify, Cloudflare Pages, Nginx, …). Cấu hình **SPA fallback** về `index.html` nếu host yêu cầu (đa số nền tảng modern xử lý sẵn cho Vite).
+
+## Favicon và biểu tượng
+
+Dự án dùng **SVG** làm favicon chính (`public/favicon.svg`, `public/apple-touch-icon.svg`). File `favicon.ico` **không** có sẵn.
+
+Để tạo `.ico` cho trình duyệt cũ:
+
+1. Truy cập [RealFaviconGenerator](https://realfavicongenerator.net).
+2. Tải lên `public/favicon.svg`.
+3. Tải gói đã tạo; nếu cần, thêm `public/favicon.ico` và thẻ `<link rel="icon" href="/favicon.ico" />` trong `index.html`.
+
+## Quy ước phát triển
+
+- Giữ **TypeScript strict**, tránh `any` không cần thiết.
+- Props và dữ liệu tĩnh nên có **interface** / **type** rõ ràng.
+- Ảnh demo: URL công khai (ví dụ Unsplash); địa chỉ cửa hàng và bản đồ cấu hình trong `Contact.tsx` / `index.html` theo nội dung thực tế.
+
+## Giấy phép & thương hiệu
+
+Mã nguồn trong repo phục vụ mục đích dự án landing page. Nội dung thương hiệu **Tân Nguyên Jewelry** thuộc chủ sở hữu thương hiệu tương ứng.
+
+---
+
+*README này mô tả trạng thái hiện tại của repository; cập nhật khi thêm tính năng hoặc thay đổi stack.*
